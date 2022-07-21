@@ -30,17 +30,16 @@ function App() {
 
   //delete task
   const deleteTask = (id) => {
-
     // if task completed, do not change count, else set count - 1
-    toDo.map(task => {
+    toDo.map((task) => {
       if (task.id === id) {
         task.status ? setCount(count) : setCount(count - 1);
       }
-    })
+    });
     // delete the task with id
-    let newTasks = toDo.filter(task => task.id !== id);
-    setToDo(newTasks);  
-  }
+    let newTasks = toDo.filter((task) => task.id !== id);
+    setToDo(newTasks);
+  };
 
   //mark task is completed
   const markDone = (id) => {
@@ -50,7 +49,7 @@ function App() {
         task.status ? setCount(count + 1) : setCount(count - 1);
 
         // change status of the task
-        return ({...task, status: !task.status})
+        return { ...task, status: !task.status };
       }
       return task;
     });
