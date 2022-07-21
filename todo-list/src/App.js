@@ -27,11 +27,14 @@ function App() {
 
   //delete task
   const deleteTask = (id) => {
+
+    // if task completed, do not change count, else set count - 1
     toDo.map(task => {
       if (task.id === id) {
         task.status ? setCount(count) : setCount(count - 1);
       }
     })
+    // delete the task with id
     let newTasks = toDo.filter(task => task.id !== id);
     setToDo(newTasks);  
   }
@@ -40,7 +43,10 @@ function App() {
   const markDone = (id) => {
     let newTasks = toDo.map(task => {
       if (task.id === id) {
+        //check if status completed or not, set count accordingly
         task.status ? setCount(count + 1) : setCount(count - 1);
+
+        // change status of the task
         return ({...task, status: !task.status})
       }
       return task;
@@ -91,21 +97,16 @@ function App() {
                   <span>
                     <button
                       className='completeBtn'
-                      onClick={(e) => markDone(task.id)}
-                    >Complete</button>
+                      onClick={(e) => markDone(task.id)}> Complete </button>
                   </span>
                   <span>
                     <button
                       className='deleteBtn'
-                      onClick={() => deleteTask(task.id)}
-                    > x
-                    </button>
+                      onClick={() => deleteTask(task.id)}> x </button>
                   </span>
 
                 </div>
               </div>
-              
-          
             </React.Fragment>
           )
         })
