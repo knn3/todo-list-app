@@ -50,3 +50,11 @@ body{
   margin: 0px 10px 0px 10px;
   cursor: pointer;
 }
+
+.trashCanIcon:hover {
+  color: red;
+}
+
+.hoverCompleteBtn:hover {
+  background-color:rgb(73, 73, 171);
+}
