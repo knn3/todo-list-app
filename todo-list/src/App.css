@@ -1,0 +1,52 @@
+body{
+  background-color:rgb(247, 197, 15);
+  color: white;
+}
+
+.App {
+  text-align: center;
+}
+
+.taskBg{
+  background-color:gray;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 10px 140px 10px 15px;
+  text-align: left;
+  font-size: 22px;
+  position: relative;
+}
+
+.taskBg .taskText {
+  flex: 1;
+}
+
+.taskBg .done .taskText{
+  text-decoration:line-through ;
+  opacity: 0.3;
+}
+
+.completeBtn{
+  background-color: blueviolet;
+  border-radius: 8px;
+}
+
+.deleteBtn {
+  background-color:red;
+  border-radius: 8px;
+}
+
+.taskBg .buttonsWrap{
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right:15px;
+  width:auto;
+  display: inline-block;
+}
+
+.taskBg .buttonsWrap span {
+  display: inline-block;
+  margin: 0px 10px 0px 10px;
+  cursor: pointer;
+}
