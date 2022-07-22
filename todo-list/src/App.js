@@ -14,15 +14,15 @@ function App() {
   //Temp State
   const [newTask, setNewTask] = useState("");
 
-  //Count State
-  const [count, setCount] = useState(0);
+  //pending State
+  const [pending, setPending] = useState(0);
 
   //add task
   const addTask = () => {
     if (newTask) {
       let num = toDo.length + 1;
       let newEntry = { id: num, title: newTask, status: false };
-      setCount(count + 1);
+      setPending(pending + 1);
       setToDo([...toDo, newEntry]);
       setNewTask("");
     }
@@ -30,11 +30,12 @@ function App() {
 
   //delete task
   const deleteTask = (id) => {
-    // if task completed, do not change count, else set count - 1
+    // if task completed, do not change pending, else set pending - 1
     toDo.map((task) => {
       if (task.id === id) {
-        task.status ? setCount(count) : setCount(count - 1);
+        task.status ? setPending(pending) : setPending(pending - 1);
       }
+      return task;
     });
     // delete the task with id
     let newTasks = toDo.filter((task) => task.id !== id);
@@ -45,8 +46,8 @@ function App() {
   const markDone = (id) => {
     let newTasks = toDo.map((task) => {
       if (task.id === id) {
-        //check if status completed or not, set count accordingly
-        task.status ? setCount(count + 1) : setCount(count - 1);
+        //check if status completed or not, set pending accordingly
+        task.status ? setPending(pending + 1) : setPending(pending - 1);
 
         // change status of the task
         return { ...task, status: !task.status };
@@ -59,7 +60,7 @@ function App() {
   return (
     <div className="container App">
       <br></br>
-      <h2>Pending Tasks &#40;{count}&#41;</h2>
+      <h2>Pending Tasks &#40;{pending}&#41;</h2>
       <br></br>
 
       {/* Add Task */}
