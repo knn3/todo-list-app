@@ -13,6 +13,7 @@ function App() {
 
   //Temp State
   const [newTask, setNewTask] = useState("");
+  const [updateData, setUpdateData] = useState("");
 
   //pending State
   const [pending, setPending] = useState(0);
@@ -57,10 +58,33 @@ function App() {
     setToDo(newTasks);
   };
 
+  //cancel update
+  const cancelUpdate = () => {
+    setUpdateData("");
+  }
+
+  //update task
+  const updateTask = () => {
+    
+  }
+
   return (
     <div className="container App">
       <br></br>
       <h2>Pending Tasks &#40;{pending}&#41;</h2>
+      <br></br>
+
+      {/* Update Task */}
+      <div className="row">
+        <div className="col">
+          <input placeholder="Update task..." className="form-control"/>
+        </div>
+        <div className="col-auto">
+          <button className="btn btn-lg btn-danger">
+            Cancel
+          </button>
+        </div>
+      </div>
       <br></br>
 
       {/* Add Task */}
@@ -73,7 +97,7 @@ function App() {
       {/* Displaying the tasks */}
       {toDo && toDo.length ? "" : "No task"}
 
-      <ToDo toDo={toDo} markDone={markDone} deleteTask={deleteTask} />
+      <ToDo toDo={toDo} markDone={markDone} deleteTask={deleteTask} updateTask={updateTask} />
     </div>
   );
 }

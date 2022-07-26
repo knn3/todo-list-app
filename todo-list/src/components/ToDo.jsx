@@ -1,8 +1,8 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faPen } from "@fortawesome/free-solid-svg-icons";
 
-function ToDo({ toDo, markDone, deleteTask }) {
+function ToDo({ toDo, markDone, deleteTask, updateTask }) {
   return (
     <>
       {toDo &&
@@ -22,6 +22,11 @@ function ToDo({ toDo, markDone, deleteTask }) {
                       Complete
                     </button>
                   </span>
+                  {task.status ? null : (
+                    <span onClick={() => updateTask()}>
+                      <FontAwesomeIcon className="penIcon" icon={faPen} />
+                    </span>
+                  )}
                   <span onClick={() => deleteTask(task.id)}>
                     <FontAwesomeIcon
                       className="trashCanIcon"

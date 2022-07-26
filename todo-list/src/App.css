@@ -55,6 +55,10 @@ body{
   color: red;
 }
 
+.penIcon:hover {
+  color: green;
+}
+
 .hoverCompleteBtn:hover {
   background-color:rgb(73, 73, 171);
 }
