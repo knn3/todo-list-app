@@ -63,10 +63,29 @@ function App() {
     setUpdateData("");
   }
 
+  //change task
+  const changeTask = (e) => {
+    let newEntry = {
+      id: updateData.id,
+      title: e.target.value,
+      status: updateData.status ? true : false
+    }
+    setUpdateData(newEntry);
+  }
+
   //update task
   const updateTask = () => {
-    
+    let filterRecords = [...toDo].filter(task => task.id !== updateData.id);
+    let updatedObject = [...filterRecords, updateData]
+    setToDo(updatedObject);
+    setUpdateData("");
   }
+
+  const onEnterChange = (e) => {
+    if (e.charCode === 13) {
+      updateTask();
+    }
+  };
 
   return (
     <div className="container App">
@@ -77,10 +96,16 @@ function App() {
       {/* Update Task */}
       <div className="row">
         <div className="col">
-          <input placeholder="Update task..." className="form-control"/>
+          <input
+            value={updateData && updateData.title}
+            onKeyPress={(e) =>onEnterChange(e)}
+            onChange={(e) => changeTask(e)}
+            placeholder="Update task..."
+            className="form-control"
+          />
         </div>
         <div className="col-auto">
-          <button className="btn btn-lg btn-danger">
+          <button onClick={cancelUpdate} className="btn btn-lg btn-danger">
             Cancel
           </button>
         </div>
@@ -97,7 +122,12 @@ function App() {
       {/* Displaying the tasks */}
       {toDo && toDo.length ? "" : "No task"}
 
-      <ToDo toDo={toDo} markDone={markDone} deleteTask={deleteTask} updateTask={updateTask} />
+      <ToDo
+        toDo={toDo}
+        markDone={markDone}
+        deleteTask={deleteTask}
+        setUpdateData={setUpdateData}
+      />
     </div>
   );
 }

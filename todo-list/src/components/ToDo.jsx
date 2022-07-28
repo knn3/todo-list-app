@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPen } from "@fortawesome/free-solid-svg-icons";
 
-function ToDo({ toDo, markDone, deleteTask, updateTask }) {
+function ToDo({ toDo, markDone, deleteTask, setUpdateData }) {
   return (
     <>
       {toDo &&
@@ -23,7 +23,15 @@ function ToDo({ toDo, markDone, deleteTask, updateTask }) {
                     </button>
                   </span>
                   {task.status ? null : (
-                    <span onClick={() => updateTask()}>
+                    <span
+                      onClick={() =>
+                        setUpdateData({
+                          id: task.id,
+                          title: task.title,
+                          status: task.status ? true : false,
+                        })
+                      }
+                    >
                       <FontAwesomeIcon className="penIcon" icon={faPen} />
                     </span>
                   )}
