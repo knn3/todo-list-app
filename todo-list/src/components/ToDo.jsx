@@ -14,6 +14,7 @@ function ToDo({ toDo, markDone, deleteTask, setUpdateData }) {
                   <span className="taskText">{task.title}</span>
                 </div>
                 <div className="buttonsWrap">
+                  {/* on Complete button click */}
                   <span>
                     <button
                       className="completeBtn hoverCompleteBtn"
@@ -22,6 +23,7 @@ function ToDo({ toDo, markDone, deleteTask, setUpdateData }) {
                       Complete
                     </button>
                   </span>
+                  {/* if task status is incompleted, there will be edit option */}
                   {task.status ? null : (
                     <span
                       onClick={() =>
@@ -35,6 +37,7 @@ function ToDo({ toDo, markDone, deleteTask, setUpdateData }) {
                       <FontAwesomeIcon className="penIcon" icon={faPen} />
                     </span>
                   )}
+                  {/* delete task */}
                   <span onClick={() => deleteTask(task.id)}>
                     <FontAwesomeIcon
                       className="trashCanIcon"

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import AddTaskForm from "./components/AddTaskForm.jsx";
 import ToDo from "./components/ToDo.jsx";
+import UpdateTaskForm from "./components/UpdateTaskForm.jsx";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -81,12 +82,6 @@ function App() {
     setUpdateData("");
   };
 
-  const onEnterChange = (e) => {
-    if (e.charCode === 13) {
-      updateTask();
-    }
-  };
-
   return (
     <div className="container App">
       <br></br>
@@ -97,23 +92,12 @@ function App() {
       {updateData && updateData ? (
         <>
           {/* Update Task */}
-          <div className="row">
-            <div className="col">
-              <input
-                value={updateData && updateData.title}
-                onKeyPress={(e) => onEnterChange(e)}
-                onChange={(e) => changeTask(e)}
-                placeholder="Update task..."
-                className="form-control"
-              />
-            </div>
-            <div className="col-auto">
-              <button onClick={cancelUpdate} className="btn btn-lg btn-danger">
-                Cancel
-              </button>
-            </div>
-          </div>
-          <br></br>
+          <UpdateTaskForm
+            changeTask={changeTask}
+            cancelUpdate={cancelUpdate}
+            updateTask={updateTask}
+            updateData={updateData}
+          />
         </>
       ) : (
         <>
