@@ -61,25 +61,25 @@ function App() {
   //cancel update
   const cancelUpdate = () => {
     setUpdateData("");
-  }
+  };
 
   //change task
   const changeTask = (e) => {
     let newEntry = {
       id: updateData.id,
       title: e.target.value,
-      status: updateData.status ? true : false
-    }
+      status: updateData.status ? true : false,
+    };
     setUpdateData(newEntry);
-  }
+  };
 
   //update task
   const updateTask = () => {
-    let filterRecords = [...toDo].filter(task => task.id !== updateData.id);
-    let updatedObject = [...filterRecords, updateData]
+    let filterRecords = [...toDo].filter((task) => task.id !== updateData.id);
+    let updatedObject = [...filterRecords, updateData];
     setToDo(updatedObject);
     setUpdateData("");
-  }
+  };
 
   const onEnterChange = (e) => {
     if (e.charCode === 13) {
@@ -93,31 +93,38 @@ function App() {
       <h2>Pending Tasks &#40;{pending}&#41;</h2>
       <br></br>
 
-      {/* Update Task */}
-      <div className="row">
-        <div className="col">
-          <input
-            value={updateData && updateData.title}
-            onKeyPress={(e) =>onEnterChange(e)}
-            onChange={(e) => changeTask(e)}
-            placeholder="Update task..."
-            className="form-control"
+      {/* if updateData has something, display update task form or else display add task form */}
+      {updateData && updateData ? (
+        <>
+          {/* Update Task */}
+          <div className="row">
+            <div className="col">
+              <input
+                value={updateData && updateData.title}
+                onKeyPress={(e) => onEnterChange(e)}
+                onChange={(e) => changeTask(e)}
+                placeholder="Update task..."
+                className="form-control"
+              />
+            </div>
+            <div className="col-auto">
+              <button onClick={cancelUpdate} className="btn btn-lg btn-danger">
+                Cancel
+              </button>
+            </div>
+          </div>
+          <br></br>
+        </>
+      ) : (
+        <>
+          {/* Add Task */}
+          <AddTaskForm
+            newTask={newTask}
+            setNewTask={setNewTask}
+            addTask={addTask}
           />
-        </div>
-        <div className="col-auto">
-          <button onClick={cancelUpdate} className="btn btn-lg btn-danger">
-            Cancel
-          </button>
-        </div>
-      </div>
-      <br></br>
-
-      {/* Add Task */}
-      <AddTaskForm
-        newTask={newTask}
-        setNewTask={setNewTask}
-        addTask={addTask}
-      />
+        </>
+      )}
 
       {/* Displaying the tasks */}
       {toDo && toDo.length ? "" : "No task"}
